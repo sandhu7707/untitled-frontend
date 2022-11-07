@@ -1,25 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import React from "react";
+import Navbar from './components/navbar/navbar.component';
+import Home from './components/home/home.component';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import EditInfo from './components/edit-info/edit-info.component';
 
-function App() {
+export default function App() {
+  console.log("in app");
+  const someRef = React.createRef();
+  
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home/>
+    },
+    {
+      path: "/edit-info",
+      element: <EditInfo/>
+    }
+  ])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar/>
+      <RouterProvider router={router}/>
     </div>
   );
 }
-
-export default App;

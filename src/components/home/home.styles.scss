@@ -1,0 +1,21 @@
+.home {
+
+    .headings{
+        display: flex;
+        justify-content: center;
+    }
+
+    .type-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        align-content: center;
+
+        .type-item{             //TODO: center this vertically
+            margin: auto;
+            width: 30vw;
+            height: 50vh;
+            background-color: aqua;
+        }
+    }
+}

@@ -1,0 +1,23 @@
+.navbar{
+
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    .navbar-home-item {
+        margin: 0 10px;
+    }
+
+    .navbar-items{
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        justify-content: flex-end;
+
+        .navbar-item{
+            margin: 0 10px;
+        }
+    }
+}
