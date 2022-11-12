@@ -1,0 +1,104 @@
+.portfolio-form {
+
+    background-color: beige;;
+    padding: 20px;
+
+    .portfolio-form-section {
+
+        margin: 20px 0px;
+        padding: 10px;
+        border-radius: 20px;
+        border-width: 1px;
+        border-color:  rgb(216, 216, 167);
+        border-style: dashed;
+
+        .section-form {
+            
+            display: grid;
+            grid-template-columns: 6fr 1fr;
+            justify-items: center;
+            align-items: center;
+
+            .form-inputs{
+                
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+
+                input {
+
+                    height: 30px;
+                    padding: 0px 20px;
+                    border-radius: 20px 20px;
+                    margin: 5px;
+                    border-width: 1px 0px;
+                    border-top-width: 0px;
+                    border-color: rgb(172, 43, 43);
+                }
+            }
+
+            .form-suggested-inputs {
+
+                width: 100%;
+                align-items: center;
+                display: flex;
+                justify-content: space-around;
+
+                button{
+
+                    height: 40px;
+                    padding: 0px 20px;
+                    margin: 10px 5px;
+                    border-radius: 20px 20px;
+                    border: 0px;
+                }
+
+                button:hover{
+
+                    background-color: rgb(0, 0, 0); // doesn't work -> do something about this
+                    cursor: pointer;
+                }
+            }
+            
+            .form-add-button {
+
+                height: 40px;
+                width: 40px;
+            }
+            
+            .form-add-button:hover {
+
+                height: 45px;
+                width: 45px;
+            }
+
+        }
+
+        .form-section-list {
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            border-radius: 20px;
+            margin: 5px;
+            padding: 5px;
+            background-color: rgb(216, 216, 167);
+            
+            .section-list-item {
+
+                width: fit-content;
+                padding: 5px 10px;
+                margin: 0px 5px;
+                border-radius: 20px;
+                border-width: 1px;
+                border-color:  rgb(65, 65, 47);
+                border-style: solid;
+            }
+        }
+    }
+
+    button{
+
+        margin-top: 15px;
+    }
+}
