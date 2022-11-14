@@ -3,12 +3,10 @@ import React from "react";
 import Navbar from './components/navbar/navbar.component';
 import Home from './components/home/home.component';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import EditInfo from './components/edit-info/edit-info.component';
+import EditInfo from './components/edit-profile/edit-profile.component';
 
 export default function App() {
-  console.log("in app");
-  const someRef = React.createRef();
-  
+
   const router = createBrowserRouter([
     {
       path: "/",

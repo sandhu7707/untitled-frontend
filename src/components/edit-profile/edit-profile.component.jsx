@@ -1,30 +1,30 @@
 import { useEffect, useState } from "react"
-import PortfolioForm from "../portfolio-form/skills-form/portfolio-form.component";
+import PortfolioForm from "../portfolio-form/portfolio-form.component";
 
 export default function EditInfo() {
 
-    const [resume, setResume] = useState(null);
+    const [profile, setProfile] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:9909/resume', {
+        fetch('http://localhost:9909/profile', {
             method: 'GET',
             headers: {
                 'Access-Control-Allow-Origin': 'http://localhost:9909',
             }
         })
             .then(response => response.json())
-            .then(data => setResume(data))
+            .then(data => setProfile(data))
             .catch(err => console.error(err))
 
     }, [])
 
-    const saveResume = () => {
-        fetch('http://localhost:9909/resume', {
+    const saveProfile = () => {
+        fetch('http://localhost:9909/profile', {
             method: 'POST',
             headers: {
                 'Access-Control-Allow-Origin': 'http://localhost:9909',
             },
-            body: JSON.parse(resume)
+            body: JSON.parse(profile)
         })
             .then(response => response.json())
             .then(data => console.log(data))
@@ -32,7 +32,9 @@ export default function EditInfo() {
 
     }
 
-    return resume ? (
+    console.log(profile)
+
+    return profile ? (
         <article 
             style={{
                 width: '80vw',
@@ -40,9 +42,9 @@ export default function EditInfo() {
             }}
         >
             <PortfolioForm
-                resume={resume}
-                setResume={setResume}
-                saveResume={saveResume}
+                profile={profile}
+                setProfile={setProfile}
+                saveProfile={saveProfile}
             />
         </article>
     ) : <div>Loading.....</div>
