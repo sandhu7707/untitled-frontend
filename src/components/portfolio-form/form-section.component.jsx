@@ -1,23 +1,24 @@
 import { useState } from "react"
 import addButton from "../../assets/add-button.svg"
 import editButton from "../../assets/edit-button.svg"
+import confirmButton from "../../assets/confirm-button.svg"
 
 export default function FormSection(props) {
 
     const { sectionKey, sectionName, textInputs, associatedInputs, sectionList,
-        handleAdd, associations, initialValues } = props;
+        handleAdd, associations, initialValues, dateInputs, bigTextInputs } = props;
 
     const [state, setState] = useState(initialValues)
+    const [isEditing, setIsEditing] = useState(false)
 
     const handleChange = (e) => {
-        if (e.target.type == "text") {
+        if (e.target.type == "text" || e.target.type == "date") {
             setState(
                 {
                     ...state,
                     [e.target.name]: e.target.value
                 });
         }
-
     }
 
     const addToAssociatedList = (e) => {
@@ -49,22 +50,24 @@ export default function FormSection(props) {
         e.preventDefault()
         handleAdd(state, sectionKey)
         setState(initialValues)
+        setIsEditing(false)
     }
 
     const textInputElements = textInputs.map(textInput =>
+        <div key={textInput.name}>
+        <label>{textInput.label}</label>
         <input
-            key={textInput.name}
             name={textInput.name}
             placeholder={textInput.placeholder}
             value={state[textInput.name]}
             type="text"
             onChange={handleChange}
         />
+        </div>
     )
 
-    const associatedInputElements = associatedInputs.map((associatedInput) => <div key={associatedInput.name} className="form-suggested-inputs">
+    const associatedInputElements = associatedInputs.map((associatedInput) => <div key={associatedInput.name} >
         <label>{associatedInput.label}</label>
-        <div className="selections">
             {associations[associatedInput.associationName] && associations[associatedInput.associationName].map(
                 (associationItem) =>
                     <button
@@ -80,20 +83,43 @@ export default function FormSection(props) {
                         {associatedInput.itemLabel(associationItem)}
                     </button>
             )}
-        </div>
     </div>
     )
 
-    const editItem = (e) => {
+    const dateInputElements = dateInputs && dateInputs.map((dateInput) => 
+    <div key={dateInput.name}>
+        <label>{dateInput.label}</label>
+        <input
+            type="date"
+            name={dateInput.name}
+            value={state[dateInput.name]}
+            onChange={handleChange}
+        />
+    </div>)
 
-        const newState = sectionList.items.filter(item => item.title === e.target.value)[0]
+    const textareaInputElements = bigTextInputs && bigTextInputs.map((bigTextInput) => 
+    <div key={bigTextInput.name}  className="form-textarea-input">
+        <label>{bigTextInput.label}</label>
+        <textarea
+            name={bigTextInput.name}
+            rows={5}
+            value={state[bigTextInput.name]}
+            onChange={handleChange}
+        />
+    </div>)
+
+    const editItem = (e) => {
+        console.log(e.target.value)
+        console.log(sectionList)
+        const newState = sectionList.items.filter(item => item.id === parseInt(e.target.value))[0]
         setState(newState)
+        setIsEditing(true)
     }
 
     const listElement = sectionList && sectionList.items && sectionList.items.map(i =>
-        <div className="section-list-item" key={sectionList.itemKey(i)}>
+        <div className="section-list-item" key={i.id}>
             {sectionList.itemLabel(i)}
-            <input className="form-edit-button" value={`${i.title}`} type="image" src={editButton} onClick={editItem}/>
+            <input className="form-edit-button" value={i.id} type="image" src={editButton} onClick={editItem}/>
         </div>
     ) /*TODO: make this editable and deletable*/
 
@@ -101,16 +127,19 @@ export default function FormSection(props) {
         <div className="portfolio-form-section">
             <form className="section-form" onSubmit={handleSubmit}>
                 <div className="form-inputs">
-                    {textInputElements}
-                    <>
+                    <div className="form-text-inputs">{textInputElements}</div>
+                    <div className="form-date-inputs">{dateInputElements}</div>
+                    <>{textareaInputElements}</>
+                    <div className="form-suggested-inputs">
                         {associatedInputElements}
-                    </>
+                    </div>
+                    
                 </div>
                 <input
                     className="form-add-button"
                     name={`add-${sectionKey}`}
                     type="image"
-                    src={addButton}
+                    src={ isEditing ? confirmButton : addButton}
                 />
             </form>
             <section className="form-section-list">

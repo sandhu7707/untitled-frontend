@@ -1,7 +1,7 @@
-import FormSection from "./form-section.component";
 import "./portfolio-form.styles.scss"
 import { useEffect } from "react";
 import Skills from "./skills.component";
+import EducationHistory from "./education-history.component";
 
 export default function PortfolioForm({ profile, setProfile, saveProfile }) {
 
@@ -17,12 +17,11 @@ export default function PortfolioForm({ profile, setProfile, saveProfile }) {
     }, [])
 
 
-    const addItem = (item, sectionKey, identifier) => {
+    const addItem = (item, sectionKey) => {
 
-        console.log(sectionKey, identifier)
 
         const list = profile[`${sectionKey}List`]
-        const itemIdx = list.findIndex(i => i[identifier] === item[identifier])
+        const itemIdx = list.findIndex(i => i.id === item.id)
 
         console.log(itemIdx)
         if(itemIdx > -1){
@@ -30,6 +29,7 @@ export default function PortfolioForm({ profile, setProfile, saveProfile }) {
             list.push(item)
         }
         else{
+            item.id = list.length + 1
             list.push(item)
         }
 
@@ -44,6 +44,11 @@ export default function PortfolioForm({ profile, setProfile, saveProfile }) {
                     addItem={addItem}
                     skillList={profile.skillList}
                     workExperienceList={profile.workExperienceList}
+                />
+                <EducationHistory
+                    addItem={addItem}
+                    educationList={profile.educationList}
+                    projectList={profile.projectList}
                 />
                 <button
                     className="save-profile-button"
