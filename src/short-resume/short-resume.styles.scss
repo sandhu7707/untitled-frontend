@@ -1,0 +1,118 @@
+:root {
+    font-family: 'Merienda', cursive;
+}
+
+.introduction {
+    grid-row: 1;
+    grid-column: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.introduction h2 {
+    margin-top: 0;
+    width: 100%;
+}
+    
+.short-resume{
+    display: grid;
+    grid-template-rows: minmax(30vh, auto) minmax(20vh, auto) minmax(30vh, auto);
+    grid-template-columns: minmax(auto, 20vw) minmax(60vw, auto) minmax(auto, 20vw);
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+    row-gap: 5px;
+}
+
+.main-content{
+    justify-self: center;
+    justify-content: center;
+    grid-row: 2;
+    grid-column: 2;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+}
+
+.collapsible-section{
+    padding: 20px;
+}
+
+.main-content:hover .collapsible-section:not(:hover):not(:target){
+    font-size: 0;
+    /* visibility: collapse; */
+    width: 0;
+    padding: 0;
+}
+
+.collapsible-section:not(:hover):not(:target)  .collapsible-content:not(:hover):not(:target) {
+    visibility: collapse;
+    font-size: 0;
+    height: 0;
+    width: 0;
+}
+
+.collapsible-section:where(:hover,:target) {
+    /* font-size: inherit; */
+    text-align: center;
+    width: 55vw;
+}
+
+.collapsible-content{
+    text-align: center;
+}
+
+#contact-me {
+    grid-row: 3;
+    grid-column: 2;
+}
+
+.contact-form, form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#contact-me .contact-details {
+    width: 50%;
+    display: flex;
+}
+
+#contact-me h2, .message {
+    width: 100%;
+    display: flex;
+    margin: 1em 0;
+}
+
+#contact-me :is(textarea, input) {
+    flex-grow: 1;
+    margin-right: 15px;
+    border: solid 1px #00000047;
+    border-radius: 5px;
+}
+
+#contact-me label {
+    width: 4em;
+}
+
+.button-container{
+    height: 40px;
+    width: 40px;;
+}
+
+.contact-button {
+    width: 30px;
+    height: 30px;
+    border: solid 1px #00000047;
+    border-radius: 5px;
+    background-image: url("../assets/contact-button.png");
+    background-size: contain;
+    cursor: pointer;
+}
+
+.contact-button:hover {
+    width: 40px;
+    height: 40px;
+    transition: .05s;
+}

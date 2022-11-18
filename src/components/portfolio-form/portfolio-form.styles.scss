@@ -25,13 +25,13 @@
                 align-items: center;
                 flex-wrap: wrap;
 
-                .form-text-inputs, .form-date-inputs, .form-textarea-input {
+                .form-text-inputs, .form-date-inputs, .form-textarea-input, .form-conditional-inputs, .conditional-input-options {
                     display: flex;
                     justify-content: space-evenly;
                     align-items: center;
                     flex-wrap: wrap;
                     width: 100%;
-    
+                    margin: 10px;
                 }
 
                 label {

@@ -2,6 +2,8 @@ import "./portfolio-form.styles.scss"
 import { useEffect } from "react";
 import Skills from "./skills.component";
 import EducationHistory from "./education-history.component";
+import WorkExperience from "./work-experience.component";
+import Projects from "./projects.component";
 
 export default function PortfolioForm({ profile, setProfile, saveProfile }) {
 
@@ -19,7 +21,6 @@ export default function PortfolioForm({ profile, setProfile, saveProfile }) {
 
     const addItem = (item, sectionKey) => {
 
-
         const list = profile[`${sectionKey}List`]
         const itemIdx = list.findIndex(i => i.id === item.id)
 
@@ -34,7 +35,6 @@ export default function PortfolioForm({ profile, setProfile, saveProfile }) {
         }
 
         setProfile(profile)
-        console.log(profile)
     }
 
     return (
@@ -49,6 +49,18 @@ export default function PortfolioForm({ profile, setProfile, saveProfile }) {
                     addItem={addItem}
                     educationList={profile.educationList}
                     projectList={profile.projectList}
+                />
+                <WorkExperience
+                    addItem={addItem}
+                    workExperienceList={profile.workExperienceList}
+                    projectList={profile.projectList}
+                    skillList={profile.skillList}
+                />
+                <Projects
+                    addItem={addItem}
+                    WorkExperienceList={profile.WorkExperienceList}
+                    projectList={profile.projectList}
+                    educationList={profile.educationList}
                 />
                 <button
                     className="save-profile-button"

@@ -19,12 +19,14 @@ export default function EditInfo() {
     }, [])
 
     const saveProfile = () => {
+        console.log(profile)
         fetch('http://localhost:9909/profile', {
             method: 'POST',
             headers: {
                 'Access-Control-Allow-Origin': 'http://localhost:9909',
+                'Content-Type': 'application/json'
             },
-            body: JSON.parse(profile)
+            body: JSON.stringify(profile)
         })
             .then(response => response.json())
             .then(data => console.log(data))

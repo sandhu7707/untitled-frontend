@@ -16,42 +16,39 @@ export default function Skills(props) {
         <FormSection
             sectionName='Skills'
             sectionKey="skill"
-            initialValues={{
-                title: '',
-                rating: '',
-                yearsOfExperience: '',
-                experienceIds: []
-            }}
-            textInputs={[
-                {
-                    name: 'title',
-                    placeholder: 'Enter a skill',
-                    label: 'Skill'
-                },
-                {
-                    name: 'rating',
-                    placeholder: 'Rate this skill out of 10',
-                    label: 'Rating'
-                },
-                {
-                    name: 'yearsOfExperience',
-                    placeholder: 'Experience in years',
-                    label: 'Years of Experience'
-                }
-            ]}
-            associatedInputs={[
-                {
-                    name: 'experience',
-                    associationName: 'workExperience',
-                    label: 'Used at roles ',
-                    itemLabel: (experience) => `${experience.jobTitle} at ${experience.company}`
-                }
-            ]}
-            sectionList={{
-                items: skillList,
-                itemLabel: skillItemLabel
-            }}
-            handleAdd={addItem}
-            associations={{ workExperience: workExperienceList }}
-        />)
+            handleAdd = { addItem }
+            inputs={{
+                textInputs:  
+                    [
+                    {
+                        name: 'title',
+                        placeholder: 'Enter a skill',
+                        label: 'Skill'
+                    },
+                    {
+                        name: 'rating',
+                        placeholder: 'Rate this skill out of 10',
+                        label: 'Rating'
+                    },
+                    {
+                        name: 'yearsOfExperience',
+                        placeholder: 'Experience in years',
+                        label: 'Years of Experience'
+                    }
+                    ],
+                associatedInputs: [
+                    {
+                        name: 'experience',
+                        items: workExperienceList,
+                        label: 'Used at roles ',
+                        itemLabel: (experience) => `${experience.jobTitle} at ${experience.company}`
+                    }
+            ]
+        }}
+        sectionList = {{
+            items: skillList,
+            itemLabel: skillItemLabel
+        }}
+        />
+    )
 }
